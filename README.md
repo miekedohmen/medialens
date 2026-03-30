@@ -38,6 +38,48 @@ Ik controleer of het systeem goed werkt aan de hand van deze punten.
 - Gebruiksgemak: Is de output voor een normale nieuwslezer goed te begrijpen?
 - Betrouwbaarheid: Werkt het proces van ophalen tot samenvatten zonder foutmeldingen?
 
+# Opdracht 2 - Technisch Ontwerp.
+
+Dit technische ontwerp beschrijft de architectuur, de datastromen en de vereisten voor het MediaLens-prototype. 
+
+## 1.    Requirements Document
+
+Functionele Eisen
+- Data-acquisitie: Het systeem moet artikelen ophalen van minmaal drie verschillende nieuwsbronnen.
+- Classificatie: Elke bron moet worden gelabeld met een politieke oriëntatie: links, midden of rechts. 
+- Clustering: Artikelen die over dezelfde gebeurtenis gaan (gebaseerd op gedeelde entiteiten, locaties en tijdstippen), moeten worden gegroepeerd.
+- Analyse: Het systeem moet verschillen in framing en taalgebruik tussen de bronnen identificeren. 
+- Summarization: Er moet een neutrale, gebalanceerde samenvatting worden gegenereerd die kernfeiten en verschillen in perspectief belicht zonder ideologisch geladen taal.
+- User Interface: De app moet clusters tonen met een visuele weergave van de politieke spreiding en de neutrale samenvatting.
+
+Niet-functionele Eisen
+- Transparantie: Het systeem moet uitlegbaar zijn over de AI-beslissingen en de classificaties tot stand komen.
+- Design: De UI moet voldoen aan de MediaLens-huisstijl, inclusief het gebruik van het Helvetica Neue font en de kleuren #**CDCCFE** en #**8DC4FB**
+- Betrouwbaarheid: Het proces van ophalen tot het samenvatten moet consistent en zonder fouten verlopen.
+
+Technologieën
+- Programmeertaal: Python. 
+- Data: RSS-feeds en Web Scraping
+- AI: Large Language Models (LLM) voor samenvattingen en embeddings voor clustering.
+
+## 2.    Procesflow
+
+De data stroomt als volgt door het systeem:
+1. Ingestion: RSS-feeds worden periodiek uitgelezen. De titels, URL's en volledige teksten van artikelen worden opgehaald.
+2. Classificatie: Aan elk artikel wordt de politieke kleur van de bron gekoppeld (bijv. Volkskrant = Links, NOS = midden, Telegraaf = Rechts)
+3. Clustering: Het systeem vergelijkt artikelen. Als ze dezelfde gebeurtenis beschrijven, krijgen ze dezelfde `Cluster_ID`
+4. Analyse: De AI vergelijkt de teksten binnen een cluster op verschillende claims en sentiment.
+5. Synthese. De AI genereert een samenvatting op basis van de verzamelde claims.
+6. Presentatie: De samenvatting en de bijbehorende artikelen worden getoond in de UI.
+
+## 3.    Applicatie Structuur Diagram (ASCD) & Componenten
+
+Het systeem is modulair opgebouwd uit de volgende componenten:
+- Ingestion Service: Verantwoordelijk voor de communicatie met externe RSS-feeds en het scrapen va de volledige artikeltekst.
+- Source Classification Module: Bevat de logica om bronnen te matchen aan hun politieke oriëntatie.
+- Topic Clustering Module: Gebruikt vector-similarity of keyword-extractie om artikelen te groeperen.
+- Bias & Framing Analyzer: Analyseert de verschillen in 
+
 
 
 
