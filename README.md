@@ -87,4 +87,6 @@ CLUSTER groepeert artikelen die over dezelfde gebeurtenis gaan.
 SUMMARY bewaart de neutrale AI-samenvatting per artikel
 BIAS_ANALYSIS slaat de framing-analyse en claims op
 
+<img src="Medialens ERD.svg" alt="MediaLens ERD">
 
+De relaties: SOURCE publiceert veel ARTICLEs (1:N), CLUSTER groepeert veel ARTICLEs (1:N), en elk ARTICLE heeft optioneel één SUMMARY en één BIAS_ANALYSIS (1:0.1)- optioneel omdat de analyse pas plaatsvindt nadat het artikel geclusterd is.
