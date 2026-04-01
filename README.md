@@ -72,41 +72,11 @@ De data stroomt als volgt door het systeem:
 5. Synthese. De AI genereert een samenvatting op basis van de verzamelde claims.
 6. Presentatie: De samenvatting en de bijbehorende artikelen worden getoond in de UI.
 
-## 3.    Applicatie Structuur Diagram (ASCD) & Componenten
+## 3.    Applicatie Structuur Diagram (ASD) & Componenten
 
-Het systeem is modulair opgebouwd uit de volgende componenten:
-- Ingestion Service: Verantwoordelijk voor de communicatie met externe RSS-feeds en het scrapen va de volledige artikeltekst.
-- Source Classification Module: Bevat de logica om bronnen te matchen aan hun politieke oriëntatie.
-- Topic Clustering Module: Gebruikt vector-similarity of keyword-extractie om artikelen te groeperen.
-- Bias & Framing Analyzer: Analyseert de verschillen in narratief en woordkeuze tussen de artikelen in een cluster.
-- AI Summarization module: Verwerkt de geanalyseerde informatie tot een neutrale tekst
-- User Interface (Flask/FastAPI): De frontend die de resultaten visualiseert voor de eindgebruiker
+<img src="MediaLens_ ASD .svg" alt="MediaLens ASD">
 
-Dataflow: De Ingestion Service stuurt ruwe data naar de database. De module voor Classificatie en Clustering verrijken deze data met metadata. De Summarization Module leest de verrijkte data en produceert de uiteindelijke samenvatting voor de UI.
-
-# 4. Database Ontwerp (ERD)
-
-Voor de lokale opslag van informatie gebruik ik de volgende structuur:
-- Tabel: Bronnen
-	- ID (Primary Key)
-	- Naam (bijv. "NOS")
-	- Politieke_kleur (Links/Midden/Rechts)
-	- RSS_UR:
-- Tabel: Artikelen
-	- ID (Primary Key)
-	- Bron_ID (Foreign Key naar bronnen)
-	- Titel
-	- Publicatiedatum
-	- Volledige_tekst
-	- URL
-	- Cluster_ID (Foreign Key naar Clusters)
-- Tabel: Clusters
-	- ID (Primary Key)
-	- Onderwerp_naam
-	- Neutrale_samenvatting
-	- Aanmaakdatum
-    
-
+Dataflow: Artikel ingestie → Politieke labeling → Clustering → Perspectief analyse → Samenvatting → Gebruikersweergave
 
 
 
