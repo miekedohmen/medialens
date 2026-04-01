@@ -76,8 +76,15 @@ De data stroomt als volgt door het systeem:
 
 <img src="MediaLens_ ASD .svg" alt="MediaLens ASD">
 
-Dataflow: Artikel ingestie → Politieke labeling → Clustering → Perspectief analyse → Samenvatting → Gebruikersweergave
+Elke rij = één gebruiksscenario dat van links naar rechts doorloopt: actor initieert → controller vangt op → business logic verwerkt → model slaat op.
 
+## 4. Database Ontwerp (ERD)
 
+Het systeem gebruikt vijf tabellen:
+ARTICLE is de centrale tabel en koppelt zowel de bron als het cluster. 
+SOURCE slaat de politieke labeling op per nieuwsbron.
+CLUSTER groepeert artikelen die over dezelfde gebeurtenis gaan.
+SUMMARY bewaart de neutrale AI-samenvatting per artikel
+BIAS_ANALYSIS slaat de framing-analyse en claims op
 
 
