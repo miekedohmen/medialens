@@ -28,3 +28,18 @@ FEEDS = [
     ("https://www.telegraaf.nl/rss/", "De Telegraaf")
     ("https://www.volkskrant.nl/voorpagina/rss.xml", "Volkskrant")
 ]
+
+def haal_feed_op(feed_url, bron_naam):
+    print(f"Feed ophalen: {bron_naam}...")
+    feed = feedparser.parse(feed_url)
+ 
+    nieuw = 0
+ 
+    for artikel in feed.entries:
+        titel = artikel.get("title", "").strip()
+        url   = artikel.get("link",  "").strip()
+ 
+        # Sla over als titel of URL ontbreekt — deze zijn verplicht
+        if not titel or not url:
+            continue
+        
