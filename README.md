@@ -90,3 +90,22 @@ BIAS_ANALYSIS slaat de framing-analyse en claims op
 <img src="Medialens ERD.svg" alt="MediaLens ERD">
 
 De relaties: SOURCE publiceert veel ARTICLEs (1:N), CLUSTER groepeert veel ARTICLEs (1:N), en elk ARTICLE heeft optioneel één SUMMARY en één BIAS_ANALYSIS (1:0.1)- optioneel omdat de analyse pas plaatsvindt nadat het artikel geclusterd is.
+
+## 2. Ingestion: Een script dat de RSS-links uitleest en de artikelen opslaat.
+Hiervoor maak ik gebruik van MongoDB omdat artikelen van RSS-feeds niet altijd dezelfde structuur hebben — de ene feed heeft een samenvatting, de andere niet. MongoDB slaat data op als documenten (vergelijkbaar met JSON) waardoor je flexibel bent in wat je opslaat. Dat past goed bij dit prototype.
+
+``` python3
+
+unique=True
+
+```
+
+Zo kan hetzelfde artikel nooit twee keer worden opgeslagen, ook niet als je het script meerdere keren draait.
+
+## 3. Classification:
+Een eenvoudige functie die de bronnaam checkt en de bijbehorende politieke kleur teruggeeft.
+
+Een lookup tabel is een transparante aanpak. Je kunt precies zien waarom een bron een label krijgt. Dat past bij de ethische eis van uitlegbaarheid uit de opdracht — je kunt het altijd handmatig aanpassen of uitbreiden.
+
+Met $set voeg je alleen het label toe aan een document zonder de rest te overschrijven. De titel en URL blijven intact.
+
